@@ -1,6 +1,11 @@
-drop database if exists inmobiliaria;
-create database inmobiliaria;
-use inmobiliaria;
+--drop database if exists inmobiliaria;
+--create database inmobiliaria;
+--use inmobiliaria;
+
+-- remotemysql.com
+drop database if exists eIrkPXYK8o;
+create database eIrkPXYK8o;
+use eIrkPXYK8o;
 
 -- Tabla Propiedades
 create table if not exists propiedades (
