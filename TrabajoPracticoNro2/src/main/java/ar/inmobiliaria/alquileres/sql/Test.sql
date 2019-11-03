@@ -32,7 +32,10 @@ select sum(monto) montoTotal from facturas;
 
 -- 6) Ingresos por mes
 select monthname(fecha), sum(monto) monto from facturas group by month(fecha);
-	from contratos c join clientes cl
+
+-- 7) Vencimiento del contrato de un cliente
+select codigoPropiedad, nombre, apellido, fechaFinal
+    from contratos c join clientes cl
 	on c.codigoCliente=cl.codigoCliente
     where nombre like '%raul%' and apellido like'%lopez ibarra%';
 
@@ -50,6 +53,3 @@ select count(*) cantidad
 	from clientes c join historiainmobiliaria h
 	on c.codigoCliente= h.codigoCliente
     where fechaEgreso is not null;
-
--- 7) Vencimiento del contrato de un cliente
-select codigoPropiedad, nombre, apellido, fechaFinal
