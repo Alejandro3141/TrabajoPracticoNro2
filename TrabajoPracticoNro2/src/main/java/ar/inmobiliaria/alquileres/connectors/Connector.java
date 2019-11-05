@@ -9,17 +9,14 @@ public class Connector {
     //Host: localhost
     //private static String url="jdbc:mysql://localhost:3306/inmobiliaria";
     //private static String user="root";
-    //private static String pass="";
-    
-    //Host: remotemysql.com --> de CLASE
-    //private static String url="jdbc:mysql://remotemysql.com:3306/HbFUMDnNdV";
-    //private static String user="HbFUMDnNdV";
-    //private static String pass="H0CKZqyPBR";
+    //private static String pass="root";
     
     // Host: remotemysql.com  --> PERSONAL
     private static String url="jdbc:mysql://remotemysql.com:3306/eIrkPXYK8o";
     private static String user="eIrkPXYK8o";
     private static String pass="uHVfWq12jA";
+    
+    
     private static Connection conn=null;
     
     private Connector(){}

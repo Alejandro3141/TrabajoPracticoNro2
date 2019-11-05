@@ -3,7 +3,7 @@ use inmobiliaria;
 select count(*) from clientes;
 
 -- 2)Cantidad de propiedades sin clientes
-select count(*) from propiedades p left join clientes c 
+select count(*) cantidad from propiedades p left join clientes c 
 	on p.codigoPropiedad=c.codigoPropiedad 
     where c.codigoPropiedad is null;
     
@@ -31,7 +31,7 @@ select codigoPropiedad, sum(monto) monto from facturas f join clientes c
 select sum(monto) montoTotal from facturas;
 
 -- 6) Ingresos por mes
-select monthname(fecha), sum(monto) monto from facturas group by month(fecha);
+select month(fecha) mes, sum(monto) monto from facturas group by month(fecha);
 
 -- 7) Vencimiento del contrato de un cliente
 select codigoPropiedad, nombre, apellido, fechaFinal
