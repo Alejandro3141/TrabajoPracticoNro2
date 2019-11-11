@@ -21,7 +21,7 @@ insert into propiedades (codigoPropiedad, ubicacion, tipoInmueble, precioAlquile
 	'Ca-01', 'Santa Clara', 'Casa', 15000, '120 m2 piso cerámico, 2 baños, cocina, comedor, living, lavandería y 2 dormitorios' 
 );
 insert into propiedades (codigoPropiedad, ubicacion, tipoInmueble, precioAlquiler, descripcion) values (
-	'Ca-02', 'San Marti­n', 'Casa', 15000, '120 m2 piso cerámico, 2 baños, cocina, comedor, living, lavandería y 2 dormitorios' 
+	'Ca-02', 'San Martin', 'Casa', 15000, '120 m2 piso cerámico, 2 baños, cocina, comedor, living, lavandería y 2 dormitorios' 
 );
 -- Departamentos
 insert into propiedades (codigoPropiedad, ubicacion, tipoInmueble, precioAlquiler, descripcion) values (
@@ -31,50 +31,48 @@ insert into propiedades (codigoPropiedad, ubicacion, tipoInmueble, precioAlquile
 	'Dep-02', 'Santa Clara', 'Departamento', 9750, '65 m2 piso cerámico con baño, 2 dormitorios, cocina comedor, living y lavandería'
 );
 insert into propiedades (codigoPropiedad, ubicacion, tipoInmueble, precioAlquiler, descripcion) values (
-	'Dep-03', 'Santa Clara', 'Departamento', 9750, '65 m2 piso cerámico con baño, 2 dormitorios, cocina comedor, living y lavanderíaa'
+	'Dep-03', 'Santa Clara', 'Departamento', 9750, '65 m2 piso cerámico con baño, 2 dormitorios, cocina comedor, living y lavandería'
 
 );
 insert into propiedades (codigoPropiedad, ubicacion, tipoInmueble, precioAlquiler, descripcion) values (
-	'Dep-04', 'San Marti­n', 'Departamento', 9000, '120 m2 piso cerámico, 2 baÃ±os, cocina, comedor, living, lavandería y 2 dormitorios'
-
+	'Dep-04', 'San Martin', 'Departamento', 9000, '120 m2 piso cerámico, 2 baños, cocina, comedor, living, lavandería y 2 dormitorios'
 );
 insert into propiedades (codigoPropiedad, ubicacion, tipoInmueble, precioAlquiler, descripcion) values (
-	'Dep-05', 'San Martin', 'Departamento', 9000, '120 m2 piso ceámico, 2 baños, cocina, comedor, living, lavandería y 2 dormitorios'
-
+	'Dep-05', 'San Martin', 'Departamento', 9000, '120 m2 piso cerámico, 2 baños, cocina, comedor, living, lavandería y 2 dormitorios'
 );
 -- Locales Comerciales
 insert into propiedades (codigoPropiedad, ubicacion, tipoInmueble, precioAlquiler, descripcion) values (
 	'Loc-01', 'Los Angeles', 'Local Comercial', 5250, '3x3 m2'
-    );
+);
 
 
 -- CLIENTES
-insert into clientes (codigoPropiedad, nombre, apellido, tipoDocumento, numeroDocumento, cuit, telefono, email, garantia, observacion) values (
-    'Loc-01', 'Raquel', 'Espinoza Ortega','dni', '20571400', '03-20571400-2', '45041325','raquel.ortega@gmail.com', null, null
+insert into clientes (codigoPropiedad, nombre, apellido, tipoDocumento, numeroDocumento, cuit_cuil, telefono, email, garantia, observacion) values (
+    'Loc-01', 'Raquel', 'Espinoza Ortega','DNI', '20571400', '03-20571400-2', '45041325','raquel.ortega@gmail.com', null, null
 );
-insert into clientes (codigoPropiedad, nombre, apellido, tipoDocumento, numeroDocumento, cuit, telefono, email, garantia, observacion) values (
-    'Ca-01', 'Jesús', 'Gonzales Rojas','dni','23595854', '54-23595854-1','41230394','jesus1231@gmail.com', 6000, null
+insert into clientes (codigoPropiedad, nombre, apellido, tipoDocumento, numeroDocumento, cuit_cuil, telefono, email, garantia, observacion) values (
+    'Ca-01', 'Jesús', 'Gonzales Rojas','DNI','23595854', '54-23595854-1','41230394','jesus1231@gmail.com', 6000, null
 );
-insert into clientes (codigoPropiedad, nombre, apellido, tipoDocumento, numeroDocumento, cuit, telefono, email, garantia, observacion) values (
-    'Ca-02', 'Guillermo', 'López Huertas','dni', '20571400', '87-20571400-7', '1569085561','guille.lopez@gmail.com', 5000, null
+insert into clientes (codigoPropiedad, nombre, apellido, tipoDocumento, numeroDocumento, cuit_cuil, telefono, email, garantia, observacion) values (
+    'Ca-02', 'Guillermo', 'López Huertas','DNI', '20571400', '87-20571400-7', '1569085561','guille.lopez@gmail.com', 5000, null
 );
-insert into clientes (codigoPropiedad, nombre, apellido, tipoDocumento, numeroDocumento, cuit, telefono, email, garantia, observacion) values (
-    'Dep-01', 'Mayra', 'Laureano Carhuaz', 'dni', '30529694', '65-60529694-9','1503439954','laureano14Carhuaz@gmail.com', 2000, null
+insert into clientes (codigoPropiedad, nombre, apellido, tipoDocumento, numeroDocumento, cuit_cuil, telefono, email, garantia, observacion) values (
+    'Dep-01', 'Mayra', 'Laureano Carhuaz', 'DNI', '30529694', '65-60529694-9','1503439954','laureano14Carhuaz@gmail.com', 2000, null
 );
-insert into clientes (codigoPropiedad, nombre, apellido, tipoDocumento, numeroDocumento, cuit, telefono, email, garantia, observacion) values (
-    'Dep-02', 'Alexandra', 'Sanchez Ireana', 'pasaporte','10311679', null, '1537387781','aleIre99@gmail.com', null, null
+insert into clientes (codigoPropiedad, nombre, apellido, tipoDocumento, numeroDocumento, cuit_cuil, telefono, email, garantia, observacion) values (
+    'Dep-02', 'Alexandra', 'Sanchez Ireana', 'Pasaporte','10311679', null, '1537387781','aleIre99@gmail.com', null, null
 );
-insert into clientes (codigoPropiedad, nombre, apellido, tipoDocumento, numeroDocumento, cuit, telefono, email, garantia, observacion) values (
-    'Dep-03', 'Eddar', 'Lara Arteaga', 'pasaporte', '135916030',null, '1507861093',null, null, null
+insert into clientes (codigoPropiedad, nombre, apellido, tipoDocumento, numeroDocumento, cuit_cuil, telefono, email, garantia, observacion) values (
+    'Dep-03', 'Eddar', 'Lara Arteaga', 'Pasaporte', '135916030',null, '1507861093',null, null, null
 );
-insert into clientes (codigoPropiedad, nombre, apellido, tipoDocumento, numeroDocumento, cuit, telefono, email, garantia, observacion) values (
-    'Hab-01', 'Indira', 'Moreno Luque','pasaporte','135916038', null, '1520204933','indira.luque5654@gmail.com', null, null
+insert into clientes (codigoPropiedad, nombre, apellido, tipoDocumento, numeroDocumento, cuit_cuil, telefono, email, garantia, observacion) values (
+    'Hab-01', 'Indira', 'Moreno Luque','Pasaporte','135916038', null, '1520204933','indira.luque5654@gmail.com', null, null
 );
-insert into clientes (codigoPropiedad, nombre, apellido, tipoDocumento, numeroDocumento, cuit, telefono, email, garantia, observacion) values (
-    'Hab-04', 'Raúl', 'Lopez Ibarra','pasaporte', '205714005', null, '1578239102', null, null, null
+insert into clientes (codigoPropiedad, nombre, apellido, tipoDocumento, numeroDocumento, cuit_cuil, telefono, email, garantia, observacion) values (
+    'Hab-04', 'Raúl', 'Lopez Ibarra','Pasaporte', '205714005', null, '1578239102', null, null, null
 );
-insert into clientes (codigoPropiedad, nombre, apellido, tipoDocumento, numeroDocumento, cuit, telefono, email, garantia, observacion) values (
-    'Dep-04', 'Ronal', 'Briceño','dni', '33574860', '01-33574860-3', '1527840932','ronal.bri@hotmail.com', 5000, null
+insert into clientes (codigoPropiedad, nombre, apellido, tipoDocumento, numeroDocumento, cuit_cuil, telefono, email, garantia, observacion) values (
+    'Dep-04', 'Ronal', 'Briceño','DNI', '33574860', '01-33574860-3', '1527840932','ronal.bri@hotmail.com', 5000, null
 );
 -- No permitir duplicados
 -- insert into clientes (codigoPropiedad, nombre, apellido, tipoDocumento, numeroDocumento, cuit, telefono, email, garantia, observacion) values (

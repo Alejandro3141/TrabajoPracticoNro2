@@ -1,6 +1,6 @@
 use inmobiliaria;
 -- 1) Cantidad de clientes actuales
-select count(*) from clientes;
+select count(*) cantidad from clientes;
 
 -- 2)Cantidad de propiedades sin clientes
 select count(*) cantidad from propiedades p left join clientes c 
@@ -50,6 +50,6 @@ select * from clientes
 
 -- 10) cantidad de Clientes egresados
 select count(*) cantidad
-	from clientes c join historiainmobiliaria h
+	from clientes c join historiaInmobiliaria h
 	on c.codigoCliente= h.codigoCliente
     where fechaEgreso is not null;

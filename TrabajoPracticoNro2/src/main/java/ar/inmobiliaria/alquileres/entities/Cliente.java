@@ -1,7 +1,6 @@
 package ar.inmobiliaria.alquileres.entities;
 import ar.inmobiliaria.alquileres.enums.TipoDocumento;
 
-// Preguntar si los documentos, telefonos y emails los dejo como Strings.
 public class Cliente {
     private int codigoCliente;
     private int codigoPropiedad;
@@ -9,7 +8,7 @@ public class Cliente {
     private String apellido;
     private TipoDocumento tipoDocumento;
     private String numeroDocumento;
-    private String cuit;
+    private String cuit_cuil;
     private String telefono;
     private String email;
     private double garantia;
@@ -17,28 +16,28 @@ public class Cliente {
 
     public Cliente() {
     }  
-    
-    public Cliente(int codigoPropiedad, String nombre, String apellido, TipoDocumento tipoDocumento, String numeroDocumento, String cuit, String telefono, String email, double garantia, String observacion) {
+
+    public Cliente(int codigoPropiedad, String nombre, String apellido, TipoDocumento tipoDocumento, String numeroDocumento, String cuit_cuil, String telefono, String email, double garantia, String observacion) {
         this.codigoPropiedad = codigoPropiedad;
         this.nombre = nombre;
         this.apellido = apellido;
         this.tipoDocumento = tipoDocumento;
         this.numeroDocumento = numeroDocumento;
-        this.cuit = cuit;
+        this.cuit_cuil = cuit_cuil;
         this.telefono = telefono;
         this.email = email;
         this.garantia = garantia;
         this.observacion = observacion;
     }
 
-    public Cliente(int codigoCliente, int codigoPropiedad, String nombre, String apellido, TipoDocumento tipoDocumento, String numeroDocumento, String cuit, String telefono, String email, double garantia, String observacion) {
+    public Cliente(int codigoCliente, int codigoPropiedad, String nombre, String apellido, TipoDocumento tipoDocumento, String numeroDocumento, String cuit_cuil, String telefono, String email, double garantia, String observacion) {
         this.codigoCliente = codigoCliente;
         this.codigoPropiedad = codigoPropiedad;
         this.nombre = nombre;
         this.apellido = apellido;
         this.tipoDocumento = tipoDocumento;
         this.numeroDocumento = numeroDocumento;
-        this.cuit = cuit;
+        this.cuit_cuil = cuit_cuil;
         this.telefono = telefono;
         this.email = email;
         this.garantia = garantia;
@@ -47,7 +46,7 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" + "codigoCliente=" + codigoCliente + ", codigoPropiedad=" + codigoPropiedad + ", nombre=" + nombre + ", apellido=" + apellido + ", tipoDocumento=" + tipoDocumento + ", numeroDocumento=" + numeroDocumento + ", cuit=" + cuit + ", telefono=" + telefono + ", email=" + email + ", garantia=" + garantia + ", observacion=" + observacion + '}';
+        return "Cliente{" + "codigoCliente=" + codigoCliente + ", codigoPropiedad=" + codigoPropiedad + ", nombre=" + nombre + ", apellido=" + apellido + ", tipoDocumento=" + tipoDocumento + ", numeroDocumento=" + numeroDocumento + ", cuit_cuil=" + cuit_cuil + ", telefono=" + telefono + ", email=" + email + ", garantia=" + garantia + ", observacion=" + observacion + '}';
     }
 
     public int getCodigoCliente() {
@@ -98,12 +97,12 @@ public class Cliente {
         this.numeroDocumento = numeroDocumento;
     }
 
-    public String getCuit() {
-        return cuit;
+    public String getCuit_cuil() {
+        return cuit_cuil;
     }
 
-    public void setCuit(String cuit) {
-        this.cuit = cuit;
+    public void setCuit_cuil(String cuit_cuil) {
+        this.cuit_cuil = cuit_cuil;
     }
 
     public String getTelefono() {
