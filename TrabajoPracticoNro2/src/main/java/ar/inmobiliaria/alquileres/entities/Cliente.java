@@ -1,9 +1,10 @@
 package ar.inmobiliaria.alquileres.entities;
 import ar.inmobiliaria.alquileres.enums.TipoDocumento;
+import java.text.DecimalFormat;
 
 public class Cliente {
     private int codigoCliente;
-    private int codigoPropiedad;
+    private String codigoPropiedad;
     private String nombre;
     private String apellido;
     private TipoDocumento tipoDocumento;
@@ -17,7 +18,19 @@ public class Cliente {
     public Cliente() {
     }  
 
-    public Cliente(int codigoPropiedad, String nombre, String apellido, TipoDocumento tipoDocumento, String numeroDocumento, String cuit_cuil, String telefono, String email, double garantia, String observacion) {
+    public Cliente(String nombre, String apellido, TipoDocumento tipoDocumento, String numeroDocumento, String cuit_cuil, String telefono, String email, double garantia, String observacion) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.tipoDocumento = tipoDocumento;
+        this.numeroDocumento = numeroDocumento;
+        this.cuit_cuil = cuit_cuil;
+        this.telefono = telefono;
+        this.email = email;
+        this.garantia = garantia;
+        this.observacion = observacion;
+    }
+    
+    public Cliente(String codigoPropiedad, String nombre, String apellido, TipoDocumento tipoDocumento, String numeroDocumento, String cuit_cuil, String telefono, String email, double garantia, String observacion) {
         this.codigoPropiedad = codigoPropiedad;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -30,7 +43,7 @@ public class Cliente {
         this.observacion = observacion;
     }
 
-    public Cliente(int codigoCliente, int codigoPropiedad, String nombre, String apellido, TipoDocumento tipoDocumento, String numeroDocumento, String cuit_cuil, String telefono, String email, double garantia, String observacion) {
+    public Cliente(int codigoCliente, String codigoPropiedad, String nombre, String apellido, TipoDocumento tipoDocumento, String numeroDocumento, String cuit_cuil, String telefono, String email, double garantia, String observacion) {
         this.codigoCliente = codigoCliente;
         this.codigoPropiedad = codigoPropiedad;
         this.nombre = nombre;
@@ -46,9 +59,13 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" + "codigoCliente=" + codigoCliente + ", codigoPropiedad=" + codigoPropiedad + ", nombre=" + nombre + ", apellido=" + apellido + ", tipoDocumento=" + tipoDocumento + ", numeroDocumento=" + numeroDocumento + ", cuit_cuil=" + cuit_cuil + ", telefono=" + telefono + ", email=" + email + ", garantia=" + garantia + ", observacion=" + observacion + '}';
+        return "Cliente{" + "codigoCliente=" + codigoCliente + ", codigoPropiedad=" + codigoPropiedad + ", nombre=" + nombre + ", apellido=" + apellido + ", tipoDocumento=" + tipoDocumento + ", numeroDocumento=" + numeroDocumento + ", cuit_cuil=" + cuit_cuil + ", telefono=" + telefono + ", email=" + email + ", garantia= $" + this.getDecimalFormat() + ", observacion=" + observacion + '}';
     }
 
+    public String getDecimalFormat () {
+        return new DecimalFormat("##,##0.00").format(this.getGarantia());
+    }
+    
     public int getCodigoCliente() {
         return codigoCliente;
     }
@@ -57,11 +74,11 @@ public class Cliente {
         this.codigoCliente = codigoCliente;
     }
 
-    public int getCodigoPropiedad() {
+    public String getCodigoPropiedad() {
         return codigoPropiedad;
     }
 
-    public void setCodigoPropiedad(int codigoPropiedad) {
+    public void setCodigoPropiedad(String codigoPropiedad) {
         this.codigoPropiedad = codigoPropiedad;
     }
 

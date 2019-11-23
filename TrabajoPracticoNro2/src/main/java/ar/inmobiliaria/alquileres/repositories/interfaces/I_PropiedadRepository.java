@@ -6,7 +6,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public interface I_PropiedadesRepository {
+public interface I_PropiedadRepository {
     void save(Propiedad propiedad);         // insert into cursos () 
     void remove(Propiedad propiedad);       // delete from cursos
     void update(Propiedad propiedad);       // update cursos

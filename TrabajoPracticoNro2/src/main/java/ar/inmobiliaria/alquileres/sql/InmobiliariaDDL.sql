@@ -1,17 +1,17 @@
--- drop database if exists inmobiliaria;
--- create database inmobiliaria;
--- use inmobiliaria;
+ drop database if exists inmobiliaria;
+ create database inmobiliaria;
+ use inmobiliaria;
 
 -- remotemysql.com
-drop database if exists eIrkPXYK8o;
-create database eIrkPXYK8o;
-use eIrkPXYK8o;
+-- drop database if exists eIrkPXYK8o;
+-- create database eIrkPXYK8o;
+-- use eIrkPXYK8o;
 
 -- Tabla Propiedades
 create table if not exists propiedades (
     codigoPropiedad char(8) not null,
-    ubicacion enum ('Santa Clara','Los Angeles','San Martin'),
-    tipoInmueble enum ('Habitacion', 'Casa','Local Comercial', 'Departamento'),
+    ubicacion enum ('Santa_Clara','Los_Angeles','San_Martin'),
+    tipoInmueble enum ('Habitacion', 'Casa','Local_Comercial', 'Departamento'),
     precioAlquiler double not null,
     descripcion varchar(150),
     primary key (codigoPropiedad)

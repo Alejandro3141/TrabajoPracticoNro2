@@ -7,14 +7,14 @@ public class Connector {
     private static String driver="com.mysql.cj.jdbc.Driver"; // driver mysql 6 o sup
     
     //Host: localhost
-    //private static String url="jdbc:mysql://localhost:3306/inmobiliaria";
-    //private static String user="root";
-    //private static String pass="root";
+    private static String url="jdbc:mysql://localhost:3306/inmobiliaria?serverTimezone=UTC";
+    private static String user="root";
+    private static String pass="guitarra3141";
     
     // Host: remotemysql.com  --> PERSONAL
-    private static String url="jdbc:mysql://remotemysql.com:3306/eIrkPXYK8o";
-    private static String user="eIrkPXYK8o";
-    private static String pass="uHVfWq12jA";
+//    private static String url="jdbc:mysql://remotemysql.com:3306/eIrkPXYK8o";
+//    private static String user="eIrkPXYK8o";
+//    private static String pass="uHVfWq12jA";
     
     
     private static Connection conn=null;

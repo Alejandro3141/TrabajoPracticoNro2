@@ -5,44 +5,44 @@ use inmobiliaria;
 
 -- Habitaciones
 insert into propiedades (codigoPropiedad, ubicacion, tipoInmueble, precioAlquiler, descripcion) values (
-	'Hab-01', 'Los Angeles', 'Habitacion', 4200, '4x4 m2 con baño y balcón' 
+	'Hab-01', 'Los_Angeles', 'Habitacion', 4200, '4x4 m2 con baño y balcón' 
 );
 insert into propiedades (codigoPropiedad, ubicacion, tipoInmueble, precioAlquiler, descripcion) values (
-	'Hab-02', 'Los Angeles', 'Habitacion', 3750, '4x4 m2 con baño y balcón' 
+	'Hab-02', 'Los_Angeles', 'Habitacion', 3750, '4x4 m2 con baño y balcón' 
 );
 insert into propiedades (codigoPropiedad, ubicacion, tipoInmueble, precioAlquiler, descripcion) values (
-	'Hab-03', 'Santa Clara', 'Habitacion', 3000, '3x3 m2 con baño y living' 
+	'Hab-03', 'Santa_Clara', 'Habitacion', 3000, '3x3 m2 con baño y living' 
 );
 insert into propiedades (codigoPropiedad, ubicacion, tipoInmueble, precioAlquiler, descripcion) values (
-	'Hab-04', 'Santa Clara', 'Habitacion', 3000, '3x3 m2 con baño y living' 
+	'Hab-04', 'Santa_Clara', 'Habitacion', 3000, '3x3 m2 con baño y living' 
 );
 -- Casas
 insert into propiedades (codigoPropiedad, ubicacion, tipoInmueble, precioAlquiler, descripcion) values (
-	'Ca-01', 'Santa Clara', 'Casa', 15000, '120 m2 piso cerámico, 2 baños, cocina, comedor, living, lavandería y 2 dormitorios' 
+	'Ca-01', 'Santa_Clara', 'Casa', 15000, '120 m2 piso cerámico, 2 baños, cocina, comedor, living, lavandería y 2 dormitorios' 
 );
 insert into propiedades (codigoPropiedad, ubicacion, tipoInmueble, precioAlquiler, descripcion) values (
-	'Ca-02', 'San Martin', 'Casa', 15000, '120 m2 piso cerámico, 2 baños, cocina, comedor, living, lavandería y 2 dormitorios' 
+	'Ca-02', 'San_Martin', 'Casa', 15000, '120 m2 piso cerámico, 2 baños, cocina, comedor, living, lavandería y 2 dormitorios' 
 );
 -- Departamentos
 insert into propiedades (codigoPropiedad, ubicacion, tipoInmueble, precioAlquiler, descripcion) values (
-	'Dep-01', 'Santa Clara', 'Departamento', 9750, '65 m2 piso cerámico con baño, 2 dormitorios, cocina comedor, living y lavandería'
+	'Dep-01', 'Santa_Clara', 'Departamento', 9750, '65 m2 piso cerámico con baño, 2 dormitorios, cocina comedor, living y lavandería'
 );
 insert into propiedades (codigoPropiedad, ubicacion, tipoInmueble, precioAlquiler, descripcion) values (
-	'Dep-02', 'Santa Clara', 'Departamento', 9750, '65 m2 piso cerámico con baño, 2 dormitorios, cocina comedor, living y lavandería'
+	'Dep-02', 'Santa_Clara', 'Departamento', 9750, '65 m2 piso cerámico con baño, 2 dormitorios, cocina comedor, living y lavandería'
 );
 insert into propiedades (codigoPropiedad, ubicacion, tipoInmueble, precioAlquiler, descripcion) values (
-	'Dep-03', 'Santa Clara', 'Departamento', 9750, '65 m2 piso cerámico con baño, 2 dormitorios, cocina comedor, living y lavandería'
+	'Dep-03', 'Santa_Clara', 'Departamento', 9750, '65 m2 piso cerámico con baño, 2 dormitorios, cocina comedor, living y lavandería'
 
 );
 insert into propiedades (codigoPropiedad, ubicacion, tipoInmueble, precioAlquiler, descripcion) values (
-	'Dep-04', 'San Martin', 'Departamento', 9000, '120 m2 piso cerámico, 2 baños, cocina, comedor, living, lavandería y 2 dormitorios'
+	'Dep-04', 'San_Martin', 'Departamento', 9000, '120 m2 piso cerámico, 2 baños, cocina, comedor, living, lavandería y 2 dormitorios'
 );
 insert into propiedades (codigoPropiedad, ubicacion, tipoInmueble, precioAlquiler, descripcion) values (
-	'Dep-05', 'San Martin', 'Departamento', 9000, '120 m2 piso cerámico, 2 baños, cocina, comedor, living, lavandería y 2 dormitorios'
+	'Dep-05', 'San_Martin', 'Departamento', 9000, '120 m2 piso cerámico, 2 baños, cocina, comedor, living, lavandería y 2 dormitorios'
 );
 -- Locales Comerciales
 insert into propiedades (codigoPropiedad, ubicacion, tipoInmueble, precioAlquiler, descripcion) values (
-	'Loc-01', 'Los Angeles', 'Local Comercial', 5250, '3x3 m2'
+	'Loc-01', 'Los_Angeles', 'Local_Comercial', 5250, '3x3 m2'
 );
 
 

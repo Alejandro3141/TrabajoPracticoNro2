@@ -1,9 +1,10 @@
 package ar.inmobiliaria.alquileres.entities;
 import ar.inmobiliaria.alquileres.enums.TipoInmueble;
 import ar.inmobiliaria.alquileres.enums.Ubicacion;
+import java.text.DecimalFormat;
 
 public class Propiedad {
-    private int codigoPropiedad;
+    private String codigoPropiedad;
     private Ubicacion ubicacion;
     private TipoInmueble tipoInmueble;
     private double precioAlquiler;
@@ -19,7 +20,7 @@ public class Propiedad {
         this.descripcion = descripcion;
     }
 
-    public Propiedad(int codigoPropiedad, Ubicacion ubicacion, TipoInmueble tipoInmueble, double precioAlquiler, String descripcion) {
+    public Propiedad(String codigoPropiedad, Ubicacion ubicacion, TipoInmueble tipoInmueble, double precioAlquiler, String descripcion) {
         this.codigoPropiedad = codigoPropiedad;
         this.ubicacion = ubicacion;
         this.tipoInmueble = tipoInmueble;
@@ -29,9 +30,13 @@ public class Propiedad {
 
     @Override
     public String toString() {
-        return "Propiedad{" + "codigoPropiedad=" + codigoPropiedad + ", ubicacion=" + ubicacion + ", tipoInmueble=" + tipoInmueble + ", precioAlquiler=" + precioAlquiler + ", descripcion=" + descripcion + '}';
+        return "Propiedad{" + "codigoPropiedad=" + codigoPropiedad + ", ubicacion=" + ubicacion + ", tipoInmueble=" + tipoInmueble + ", precioAlquiler= $" + this.getDecimalFormat() + ", descripcion=" + descripcion + '}';
     }
 
+    public String getDecimalFormat () {
+        return new DecimalFormat("##,##0.00").format(this.getPrecioAlquiler());
+    }
+    
     public Ubicacion getUbicacion() {
         return ubicacion;
     }
@@ -48,11 +53,11 @@ public class Propiedad {
         this.tipoInmueble = tipoInmueble;
     }
 
-    public int getCodigoPropiedad() {
+    public String getCodigoPropiedad() {
         return codigoPropiedad;
     }
 
-    public void setCodigoPropiedad(int codigoPropiedad) {
+    public void setCodigoPropiedad(String codigoPropiedad) {
         this.codigoPropiedad = codigoPropiedad;
     }
 

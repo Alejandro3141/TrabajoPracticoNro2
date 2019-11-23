@@ -2,13 +2,14 @@ package ar.inmobiliaria.alquileres.repositories.jdbc;
 import ar.inmobiliaria.alquileres.entities.Propiedad;
 import ar.inmobiliaria.alquileres.enums.TipoInmueble;
 import ar.inmobiliaria.alquileres.enums.Ubicacion;
-import ar.inmobiliaria.alquileres.repositories.interfaces.I_PropiedadesRepository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
+import ar.inmobiliaria.alquileres.repositories.interfaces.I_PropiedadRepository;
+import java.util.ArrayList;
 
-public class PropiedadRepository implements I_PropiedadesRepository {
+public class PropiedadRepository implements I_PropiedadRepository {
     private List<Propiedad> list;
     private Connection conn;
     
@@ -19,17 +20,17 @@ public class PropiedadRepository implements I_PropiedadesRepository {
     public void save(Propiedad propiedad) {
         if(propiedad==null) return;
         try (PreparedStatement ps=conn.prepareStatement(
-            "insert into propiedades (codigoPropiedad, ubicacion, tipoInmueble, precioAlquiler, descripcion) values (?,?,?,?)",
+            "insert into propiedades (codigoPropiedad, ubicacion, tipoInmueble, precioAlquiler, descripcion) values (?,?,?,?,?)",
             PreparedStatement.RETURN_GENERATED_KEYS
         )) {
-            ps.setInt(1, propiedad.getCodigoPropiedad());
+            ps.setString(1, propiedad.getCodigoPropiedad());
             ps.setString(2,propiedad.getUbicacion().toString());
             ps.setString(3, propiedad.getTipoInmueble().toString());
             ps.setDouble(4,propiedad.getPrecioAlquiler());
             ps.setString(5, propiedad.getDescripcion());
             ps.execute();
             ResultSet rs=ps.getGeneratedKeys();
-            if(rs.next()) propiedad.setCodigoPropiedad(rs.getInt(1));
+            if(rs.next()) propiedad.setCodigoPropiedad(rs.getString(1));
         } catch (Exception e) { e.printStackTrace(); }
     }
 
@@ -38,7 +39,7 @@ public class PropiedadRepository implements I_PropiedadesRepository {
         if(propiedad==null) return;
         try (PreparedStatement ps=conn.prepareStatement(
                 "delete from propiedades where codigoPropiedad=?")) {
-            ps.setInt(1, propiedad.getCodigoPropiedad());
+            ps.setString(1, propiedad.getCodigoPropiedad());
             ps.execute();
         } catch (Exception e) { e.printStackTrace(); }
     }
@@ -53,17 +54,18 @@ public class PropiedadRepository implements I_PropiedadesRepository {
             ps.setString(2, propiedad.getTipoInmueble().toString());
             ps.setDouble(3, propiedad.getPrecioAlquiler());
             ps.setString(4, propiedad.getDescripcion());
-            ps.setInt(5, propiedad.getCodigoPropiedad());
+            ps.setString(5, propiedad.getCodigoPropiedad());
             ps.execute();
         } catch (Exception e) { e.printStackTrace(); }
     }
 
     @Override
     public List<Propiedad> getList() {
+        list= new ArrayList();
         try (ResultSet rs=conn.createStatement().executeQuery("select * from propiedades");) {
             while(rs.next()){
                 list.add(new Propiedad(
-                        rs.getInt("codigoPropiedad"),
+                        rs.getString("codigoPropiedad"),
                         Ubicacion.valueOf(rs.getString("ubicacion")),
                         TipoInmueble.valueOf(rs.getString("tipoInmueble")),
                         rs.getDouble("precioAlquiler"),
