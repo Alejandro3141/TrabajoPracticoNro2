@@ -2,7 +2,6 @@ package ar.inmobiliaria.alquileres.entities;
 import ar.inmobiliaria.alquileres.enums.TiempoCuotas;
 import java.sql.Date;
 
-// Preguntar si uso DATE?
 public class Contrato {
     private int codigoContrato;
     private int codigoCliente;

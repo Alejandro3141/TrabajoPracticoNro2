@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Factura {
     private int codigoFactura;
     private int codigoCliente;
-    private Date fecha;  // Preguntar si uso DATE?
+    private Date fecha;
     private int cuota;
     private double mora;
     private double monto;
