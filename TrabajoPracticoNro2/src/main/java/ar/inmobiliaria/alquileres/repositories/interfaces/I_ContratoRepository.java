@@ -23,6 +23,13 @@ public interface I_ContratoRepository {
                 .findFirst()
                 .orElse(new Contrato());
     }
+    default Contrato getByCodigoCliente (int codigo) {
+        return getList()
+                .stream()
+                .filter(c -> c.getCodigoCliente() == codigo)
+                .findFirst()
+                .orElse(new Contrato());
+    }
     default int getCount () {
         return (int) getList()
                 .stream()

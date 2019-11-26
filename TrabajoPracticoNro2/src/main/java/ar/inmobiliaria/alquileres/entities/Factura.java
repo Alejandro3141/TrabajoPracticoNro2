@@ -1,11 +1,11 @@
 package ar.inmobiliaria.alquileres.entities;
 
-import java.sql.Date;
+import java.text.DecimalFormat;
 
 public class Factura {
     private int codigoFactura;
     private int codigoCliente;
-    private Date fecha;
+    private String fecha;
     private int cuota;
     private double mora;
     private double monto;
@@ -13,7 +13,7 @@ public class Factura {
     public Factura() {
     }
 
-    public Factura(int codigoFactura, int codigoCliente, Date fecha, int cuota, double mora, double monto) {
+    public Factura(int codigoFactura, int codigoCliente, String fecha, int cuota, double mora, double monto) {
         this.codigoFactura = codigoFactura;
         this.codigoCliente = codigoCliente;
         this.fecha = fecha;
@@ -22,7 +22,7 @@ public class Factura {
         this.monto = monto;
     }
 
-    public Factura(int codigoCliente, Date fecha, int cuota, double mora, double monto) {
+    public Factura(int codigoCliente, String fecha, int cuota, double mora, double monto) {
         this.codigoCliente = codigoCliente;
         this.fecha = fecha;
         this.cuota = cuota;
@@ -32,9 +32,17 @@ public class Factura {
 
     @Override
     public String toString() {
-        return "Factura{" + "codigoFactura=" + codigoFactura + ", codigoCliente=" + codigoCliente + ", fecha=" + fecha + ", cuota=" + cuota + ", mora=" + mora + ", monto=" + monto + '}';
+        return "Factura{" + "codigoFactura=" + codigoFactura + ", codigoCliente=" + codigoCliente + ", fecha=" + fecha + ", cuota=" + cuota + ", mora= $" + this.getDecimalFormatMora() + ", monto= $" + this.getDecimalFormatMonto() + '}';
     }
 
+    private String getDecimalFormatMonto () {
+        return new DecimalFormat("##,##0.00").format(this.getMonto());
+    }
+    
+    private String getDecimalFormatMora () {
+        return new DecimalFormat("##,##0.00").format(this.getMora());
+    }
+        
     public int getCodigoFactura() {
         return codigoFactura;
     }
@@ -51,11 +59,11 @@ public class Factura {
         this.codigoCliente = codigoCliente;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 

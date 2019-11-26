@@ -25,6 +25,13 @@ public interface I_ClienteRepository {
                 .findFirst()
                 .orElse(new Cliente());
     }
+    default Cliente getByCodigoPropiedad (String propiedad) {
+        return getList()
+                .stream()
+                .filter(c -> c.getCodigoPropiedad().equals(propiedad))
+                .findFirst()
+                .orElse(new Cliente());
+    }
     default List<Cliente> getLikeNombreAndApellido(String nombre, String apellido){
         if(nombre==null || apellido==null) return new ArrayList();
         return getList()

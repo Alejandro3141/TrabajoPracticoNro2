@@ -33,7 +33,7 @@ public class Propiedad {
         return "Propiedad{" + "codigoPropiedad=" + codigoPropiedad + ", ubicacion=" + ubicacion + ", tipoInmueble=" + tipoInmueble + ", precioAlquiler= $" + this.getDecimalFormat() + ", descripcion=" + descripcion + '}';
     }
 
-    public String getDecimalFormat () {
+    private String getDecimalFormat () {
         return new DecimalFormat("##,##0.00").format(this.getPrecioAlquiler());
     }
     

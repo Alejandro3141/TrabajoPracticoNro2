@@ -24,8 +24,8 @@ public class ContratoRepository implements I_ContratoRepository {
             PreparedStatement.RETURN_GENERATED_KEYS
         )) {
             ps.setInt(1, contrato.getCodigoCliente());
-            ps.setDate(2, contrato.getFechaInicio());
-            ps.setDate(3, contrato.getFechaFinal());
+            ps.setString(2, contrato.getFechaInicio());
+            ps.setString(3, contrato.getFechaFinal());
             ps.setString(4, contrato.getTiempoCuotas().toString());
             ps.setInt(5, contrato.getNumeroCuotas());
             ps.execute();
@@ -51,10 +51,11 @@ public class ContratoRepository implements I_ContratoRepository {
             "update contratos set codigoCliente=?, fechaInicio=?, fechaFinal=?, tiempoCuotas=?, numeroCuotas=? where codigoContrato=?"
         )) {
             ps.setInt(1, contrato.getCodigoCliente());
-            ps.setDate(2, contrato.getFechaInicio());
-            ps.setDate(3, contrato.getFechaFinal());
+            ps.setString(2, contrato.getFechaInicio());
+            ps.setString(3, contrato.getFechaFinal());
             ps.setString(4, contrato.getTiempoCuotas().toString());
             ps.setInt(5, contrato.getNumeroCuotas());
+            ps.setInt(6, contrato.getCodigoContrato());
             ps.execute();
         } catch (Exception e) { e.printStackTrace(); }
     }
@@ -68,8 +69,8 @@ public class ContratoRepository implements I_ContratoRepository {
                 list.add(new Contrato(
                         rs.getInt("codigoContrato"),
                         rs.getInt("codigoCliente"),
-                        rs.getDate("fechaInicio"),
-                        rs.getDate("fechaFinal"),
+                        rs.getString("fechaInicio"),
+                        rs.getString("fechaFinal"),
                         TiempoCuotas.valueOf(rs.getString("tiempoCuotas")),
                         rs.getInt("numeroCuotas")
                 ));

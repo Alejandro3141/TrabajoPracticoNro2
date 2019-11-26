@@ -1,19 +1,18 @@
 package ar.inmobiliaria.alquileres.entities;
 import ar.inmobiliaria.alquileres.enums.TiempoCuotas;
-import java.sql.Date;
 
 public class Contrato {
     private int codigoContrato;
     private int codigoCliente;
-    private Date fechaInicio;
-    private Date fechaFinal;
+    private String fechaInicio;//Se lo va a tratar como String y luego se va a parsear como Date
+    private String fechaFinal;
     private TiempoCuotas tiempoCuotas;
     private int numeroCuotas;
 
     public Contrato() {
     }
 
-    public Contrato(int codigoCliente, Date fechaInicio, Date fechaFinal, TiempoCuotas tiempoCuotas, int numeroCuotas) {
+    public Contrato(int codigoCliente, String fechaInicio, String fechaFinal, TiempoCuotas tiempoCuotas, int numeroCuotas) {
         this.codigoCliente = codigoCliente;
         this.fechaInicio = fechaInicio;
         this.fechaFinal = fechaFinal;
@@ -21,7 +20,7 @@ public class Contrato {
         this.numeroCuotas = numeroCuotas;
     }
 
-    public Contrato(int codigoContrato, int codigoCliente, Date fechaInicio, Date fechaFinal, TiempoCuotas tiempoCuotas, int numeroCuotas) {
+    public Contrato(int codigoContrato, int codigoCliente, String fechaInicio, String fechaFinal, TiempoCuotas tiempoCuotas, int numeroCuotas) {
         this.codigoContrato = codigoContrato;
         this.codigoCliente = codigoCliente;
         this.fechaInicio = fechaInicio;
@@ -51,19 +50,19 @@ public class Contrato {
         this.codigoCliente = codigoCliente;
     }
 
-    public Date getFechaInicio() {
+    public String getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(Date fechaInicio) {
+    public void setFechaInicio(String fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public Date getFechaFinal() {
+    public String getFechaFinal() {
         return fechaFinal;
     }
 
-    public void setFechaFinal(Date fechaFinal) {
+    public void setFechaFinal(String fechaFinal) {
         this.fechaFinal = fechaFinal;
     }
 
