@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FacturaRepository implements I_FacturaRepository {
-    private List list;
+    private List<Factura> list;
     private Connection conn;
 
     public FacturaRepository(List list) {

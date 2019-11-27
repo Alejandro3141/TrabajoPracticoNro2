@@ -1,21 +1,20 @@
 package ar.inmobiliaria.alquileres.entities;
-import java.sql.Date;
 
 public class HistoriaInmobiliaria {
-    private int codigoPropiedad;
+    private String codigoPropiedad;
     private int codigoCliente;
-    private Date fechaRenovacion; // PREGUNTAR SI USO DATE?
-    private Date fechaEgreso;
+    private String fechaRenovacion;
+    private String fechaEgreso;
 
     public HistoriaInmobiliaria() {
     }
 
-    public HistoriaInmobiliaria(Date fechaRenovacion, Date fechaEgreso) {
+    public HistoriaInmobiliaria(String fechaRenovacion, String fechaEgreso) {
         this.fechaRenovacion = fechaRenovacion;
         this.fechaEgreso = fechaEgreso;
     }
 
-    public HistoriaInmobiliaria(int codigoPropiedad, int codigoCliente, Date fechaRenovacion, Date fechaEgreso) {
+    public HistoriaInmobiliaria(String codigoPropiedad, int codigoCliente, String fechaRenovacion, String fechaEgreso) {
         this.codigoPropiedad = codigoPropiedad;
         this.codigoCliente = codigoCliente;
         this.fechaRenovacion = fechaRenovacion;
@@ -27,11 +26,11 @@ public class HistoriaInmobiliaria {
         return "HistoriaInmobiliaria{" + "codigoPropiedad=" + codigoPropiedad + ", codigoCliente=" + codigoCliente + ", fechaRenovacion=" + fechaRenovacion + ", fechaEgreso=" + fechaEgreso + '}';
     }
 
-    public int getCodigoPropiedad() {
+    public String getCodigoPropiedad() {
         return codigoPropiedad;
     }
 
-    public void setCodigoPropiedad(int codigoPropiedad) {
+    public void setCodigoPropiedad(String codigoPropiedad) {
         this.codigoPropiedad = codigoPropiedad;
     }
 
@@ -43,19 +42,19 @@ public class HistoriaInmobiliaria {
         this.codigoCliente = codigoCliente;
     }
 
-    public Date getFechaRenovacion() {
+    public String getFechaRenovacion() {
         return fechaRenovacion;
     }
 
-    public void setFechaRenovacion(Date fechaRenovacion) {
+    public void setFechaRenovacion(String fechaRenovacion) {
         this.fechaRenovacion = fechaRenovacion;
     }
 
-    public Date getFechaEgreso() {
+    public String getFechaEgreso() {
         return fechaEgreso;
     }
 
-    public void setFechaEgreso(Date fechaEgreso) {
+    public void setFechaEgreso(String fechaEgreso) {
         this.fechaEgreso = fechaEgreso;
     }
     
