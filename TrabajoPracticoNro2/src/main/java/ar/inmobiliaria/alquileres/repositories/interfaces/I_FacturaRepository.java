@@ -35,7 +35,7 @@ public interface I_FacturaRepository {
     default List<Factura> getClientesMora() {
         return getList()
                 .stream()
-                .filter(f -> !(f.getMonto() > 0))
+                .filter(f -> f.getMora()> 0)
                 .collect(Collectors.toList());
     }
     default int getCount() {

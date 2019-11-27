@@ -4,6 +4,7 @@ import ar.inmobiliaria.alquileres.repositories.interfaces.I_HistoriaInmobiliaria
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 public class HistoriaInmobiliariaRepository implements I_HistoriaInmobiliariaRepository{
@@ -62,7 +63,19 @@ public class HistoriaInmobiliariaRepository implements I_HistoriaInmobiliariaRep
 
     @Override
     public List<HistoriaInmobiliaria> getList() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        list = new ArrayList();
+        try (ResultSet rs=conn.createStatement().executeQuery(
+                "select * from historiaInmobiliaria")) {
+            while(rs.next()){
+                list.add(new HistoriaInmobiliaria(
+                        rs.getString("codigoPropiedad"),
+                        rs.getInt("codigoCliente"),
+                        rs.getString("fechaRenovacion"),
+                        rs.getString("fechaEgreso")
+                ));
+            }
+        } catch (Exception e) { e.printStackTrace();  }
+        return list;
     }
     
 }

@@ -31,8 +31,10 @@ public class TestHistoriaInmobiliariaRepository {
             System.out.println("\n" + "Conseguir una historia por codigoPropiedad:" + "\n" + hi.getByCodigoPropiedad("Ca-02"));
             System.out.println("\n" + "Conseguir una historia por codigoCliente:" + "\n" + hi.getByCodigoCliente(2));
             System.out.println("\n" + "Conseguir una historia por codigoPropiedadYCliente:" + "\n" + hi.getByCodigoPropiedadAndCliente("Dep-01", 7));
-            System.out.println("\n" + "Conseguir una historia por Fecha de Renovación:" + "\n" + hi.getByRenovados());
-            System.out.println("\n" + "Conseguir una historia por Fecha de Egresados:" + "\n" + hi.getByEgresados());
+            System.out.println("\n" + "Conseguir una historia por Fecha de Renovación:");
+            hi.getByRenovados().forEach(System.out::println);
+            System.out.println("\n" + "Conseguir una historia por Fecha de Egresados:");
+            hi.getByEgresados().forEach(System.out::println);
         } catch (Exception e) { e.printStackTrace(); }
     }
 }

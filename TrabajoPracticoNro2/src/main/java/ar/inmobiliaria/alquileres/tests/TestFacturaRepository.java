@@ -30,11 +30,13 @@ public class TestFacturaRepository {
             factura.setMonto(5000);
             fr.update(factura);
             fr.getList().forEach(System.out::println);
+            
             //CONSULTAS
             System.out.println("\n" + "Conseguir una Factura por el Código: " + "\n" + fr.getByCodigo(2));
             System.out.println("\n" + "Conseguir una Factura por el Cliente:" + "\n" + fr.getByCliente(cr.getById(1)));
             System.out.println("\n" + "Conseguir una Factura por el CódigoCliente:" + "\n" + fr.getByCodigoCliente(2));
-            System.out.println("\n" + "Conseguir Clientes en Mora:" + "\n" + fr.getClientesMora());
+            System.out.println("\n" + "Conseguir Clientes en Mora:");
+            fr.getClientesMora().forEach(System.out::println);
             System.out.println("\n" + "Conseguir cantidad de Facturas: " + fr.getCount());
         } catch (Exception e) { e.printStackTrace();}
     }
