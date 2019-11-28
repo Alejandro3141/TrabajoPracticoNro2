@@ -21,7 +21,10 @@ public class TestPropiedadRepository {
             pr.getList().forEach(System.out::println);
             // Remove
             System.out.println();
-            pr.remove(pr.getByCodigo("Ca-01")); // No se puede eliminar una propiedad que tenga clientes
+            System.out.println("*******************************************************");
+            System.out.println("*No se puede eliminar una propiedad que tenga clientes*");
+            System.out.println("*******************************************************");
+            pr.remove(pr.getByCodigo("Ca-01"));
             pr.getList().forEach(System.out::println);
             // Propiedades sin clientes --> del TestConnection
             System.out.println();

@@ -30,9 +30,9 @@ public class HistoriaInmobiliariaRepository implements I_HistoriaInmobiliariaRep
             ps.setString(3, historiaInmobiliaria.getFechaRenovacion());
             ps.setString(4, historiaInmobiliaria.getFechaEgreso());
             ps.execute();
-            ResultSet rs=ps.getGeneratedKeys();
-            if(rs.next()) historiaInmobiliaria.setCodigoCliente(rs.getInt(1));
-            if(rs.next()) historiaInmobiliaria.setCodigoPropiedad(rs.getString(1));
+            //ResultSet rs=ps.getGeneratedKeys(); // No es necesario generar el resultSet y setearlas xq ya se creo el códigoPropiedad y el códigoCliente
+            //if(rs.next()) historiaInmobiliaria.setCodigoCliente(rs.getInt(1));
+            //if(rs.next()) historiaInmobiliaria.setCodigoPropiedad(rs.getString(1));
         } catch (Exception e) { e.printStackTrace(); }
     }
 

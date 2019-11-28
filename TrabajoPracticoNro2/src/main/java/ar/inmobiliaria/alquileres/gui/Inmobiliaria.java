@@ -23,8 +23,8 @@ public class Inmobiliaria extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         mnuOpciones = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        mniAcerca = new javax.swing.JMenuItem();
+        mniSalir = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,16 +49,21 @@ public class Inmobiliaria extends javax.swing.JFrame {
 
         mnuOpciones.setText("Opciones");
 
-        jMenuItem1.setText("Acerca");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        mniAcerca.setText("Acerca");
+        mniAcerca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                mniAcercaActionPerformed(evt);
             }
         });
-        mnuOpciones.add(jMenuItem1);
+        mnuOpciones.add(mniAcerca);
 
-        jMenuItem2.setText("Salir");
-        mnuOpciones.add(jMenuItem2);
+        mniSalir.setText("Salir");
+        mniSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniSalirActionPerformed(evt);
+            }
+        });
+        mnuOpciones.add(mniSalir);
 
         jMenuBar1.add(mnuOpciones);
 
@@ -68,24 +73,25 @@ public class Inmobiliaria extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(desktop, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(desktop, javax.swing.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(desktop, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(desktop, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // EVENTO ACERCA
-        JOptionPane.showMessageDialog(this, "Sistema de Alquiler de Inmobiliaria 2019", "Inmobiliaria", HEIGHT);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    private void mniAcercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniAcercaActionPerformed
+        // Evento ACERCA
+        JOptionPane.showMessageDialog(this, "Sistema de Alquileres Inmobiliaria 2019");
+    }//GEN-LAST:event_mniAcercaActionPerformed
+
+    private void mniSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniSalirActionPerformed
+        // Evento SALIR
+        System.exit(0);
+    }//GEN-LAST:event_mniSalirActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -122,13 +128,13 @@ public class Inmobiliaria extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktop;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem mniAcerca;
+    private javax.swing.JMenuItem mniSalir;
     private javax.swing.JMenu mnuOpciones;
     private javax.swing.JMenu mnuVentanas;
     // End of variables declaration//GEN-END:variables

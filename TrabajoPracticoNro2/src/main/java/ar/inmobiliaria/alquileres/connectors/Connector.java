@@ -21,12 +21,17 @@ public class Connector {
     
     private Connector(){}
     public synchronized static Connection getConnection(){
-        if(conn==null){
-            try {
-                Class.forName(driver);
-                conn=DriverManager.getConnection(url,user,pass);
-            } catch (Exception e) { e.printStackTrace(); }
-        }
+    // Volver a abrir la conexión por las dudas si esta closeado, así puedo ejecutar el TestGeneral
+    // Ya que try with resources cierra la conexión con los tests
+    // Al usar el método isClosed() puede lanzar una Exception
+        try {
+            if(conn==null || conn.isClosed()){
+                try {
+                    Class.forName(driver);
+                    conn=DriverManager.getConnection(url,user,pass);
+                } catch (Exception e) { e.printStackTrace(); }
+            }
+        } catch (Exception e) {e.printStackTrace();}
         return conn;
     }    
 }
