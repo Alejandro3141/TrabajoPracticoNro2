@@ -1,5 +1,5 @@
 package ar.inmobiliaria.alquileres.gui;
-
+import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -17,11 +17,13 @@ public class Inmobiliaria extends javax.swing.JFrame {
         desktop = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnuVentanas = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
+        mnuPropiedades = new javax.swing.JMenu();
+        mniPropiedades = new javax.swing.JMenuItem();
+        mniBuscar = new javax.swing.JMenuItem();
+        mniClientes = new javax.swing.JMenuItem();
+        mniContratos = new javax.swing.JMenuItem();
+        mniFacturas = new javax.swing.JMenuItem();
+        mniHistoria = new javax.swing.JMenuItem();
         mnuOpciones = new javax.swing.JMenu();
         mniAcerca = new javax.swing.JMenuItem();
         mniSalir = new javax.swing.JMenuItem();
@@ -30,20 +32,57 @@ public class Inmobiliaria extends javax.swing.JFrame {
 
         mnuVentanas.setText("Ventanas");
 
-        jMenuItem3.setText("Propiedades");
-        mnuVentanas.add(jMenuItem3);
+        mnuPropiedades.setText("Propiedades");
 
-        jMenuItem4.setText("Clientes");
-        mnuVentanas.add(jMenuItem4);
+        mniPropiedades.setText("Dar de Alta");
+        mniPropiedades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniPropiedadesActionPerformed(evt);
+            }
+        });
+        mnuPropiedades.add(mniPropiedades);
 
-        jMenuItem5.setText("Contratos");
-        mnuVentanas.add(jMenuItem5);
+        mniBuscar.setText("Buscar Propiedad");
+        mniBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniBuscarActionPerformed(evt);
+            }
+        });
+        mnuPropiedades.add(mniBuscar);
 
-        jMenuItem6.setText("Facturas");
-        mnuVentanas.add(jMenuItem6);
+        mnuVentanas.add(mnuPropiedades);
 
-        jMenuItem7.setText("HistoriaInmobiliaria");
-        mnuVentanas.add(jMenuItem7);
+        mniClientes.setText("Clientes");
+        mniClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniClientesActionPerformed(evt);
+            }
+        });
+        mnuVentanas.add(mniClientes);
+
+        mniContratos.setText("Contratos");
+        mniContratos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniContratosActionPerformed(evt);
+            }
+        });
+        mnuVentanas.add(mniContratos);
+
+        mniFacturas.setText("Facturas");
+        mniFacturas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniFacturasActionPerformed(evt);
+            }
+        });
+        mnuVentanas.add(mniFacturas);
+
+        mniHistoria.setText("Historia Inmobiliaria");
+        mniHistoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniHistoriaActionPerformed(evt);
+            }
+        });
+        mnuVentanas.add(mniHistoria);
 
         jMenuBar1.add(mnuVentanas);
 
@@ -93,6 +132,54 @@ public class Inmobiliaria extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_mniSalirActionPerformed
 
+    private void mniPropiedadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniPropiedadesActionPerformed
+        // PropiedadesAlta
+        PropiedadesAlta propiedades = new PropiedadesAlta();
+        desktop.add(propiedades);
+        Dimension desktopSize = desktop.getSize();
+        Dimension FrameSize = propiedades.getSize();
+        propiedades.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        propiedades.setVisible(true);
+    }//GEN-LAST:event_mniPropiedadesActionPerformed
+
+    private void mniClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniClientesActionPerformed
+        // Clientes
+        Clientes clientes = new Clientes();
+        desktop.add(clientes);
+        clientes.setVisible(true);
+    }//GEN-LAST:event_mniClientesActionPerformed
+
+    private void mniContratosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniContratosActionPerformed
+        // Contratos
+        Contratos contratos = new Contratos();
+        desktop.add(contratos);
+        contratos.setVisible(true);
+    }//GEN-LAST:event_mniContratosActionPerformed
+
+    private void mniFacturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniFacturasActionPerformed
+        // Facturas
+        Facturas facturas = new Facturas();
+        desktop.add(facturas);
+        facturas.setVisible(true);
+    }//GEN-LAST:event_mniFacturasActionPerformed
+
+    private void mniHistoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniHistoriaActionPerformed
+        // Historia
+        HistoriaInmobiliaria historia = new HistoriaInmobiliaria();
+        desktop.add(historia);
+        historia.setVisible(true);
+    }//GEN-LAST:event_mniHistoriaActionPerformed
+
+    private void mniBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniBuscarActionPerformed
+        // PropiedadesBuscar
+        PropiedadesBuscar propiedades = new PropiedadesBuscar();
+        desktop.add(propiedades);
+        Dimension desktopSize = desktop.getSize();
+        Dimension FrameSize = propiedades.getSize();
+        propiedades.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        propiedades.setVisible(true);
+    }//GEN-LAST:event_mniBuscarActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -128,14 +215,16 @@ public class Inmobiliaria extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktop;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem mniAcerca;
+    private javax.swing.JMenuItem mniBuscar;
+    private javax.swing.JMenuItem mniClientes;
+    private javax.swing.JMenuItem mniContratos;
+    private javax.swing.JMenuItem mniFacturas;
+    private javax.swing.JMenuItem mniHistoria;
+    private javax.swing.JMenuItem mniPropiedades;
     private javax.swing.JMenuItem mniSalir;
     private javax.swing.JMenu mnuOpciones;
+    private javax.swing.JMenu mnuPropiedades;
     private javax.swing.JMenu mnuVentanas;
     // End of variables declaration//GEN-END:variables
 }
