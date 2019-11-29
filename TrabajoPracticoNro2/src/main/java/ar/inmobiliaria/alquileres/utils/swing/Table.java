@@ -44,7 +44,7 @@ public class Table <E> {
                 try {
                     fila[a]=o.getClass().getMethod(metodo, null).invoke(o, null);
                 } catch (Exception ex) { ex.printStackTrace(); }
-            dtm.addRow(fila);
-        }
+            }
+        dtm.addRow(fila);
     }
 }

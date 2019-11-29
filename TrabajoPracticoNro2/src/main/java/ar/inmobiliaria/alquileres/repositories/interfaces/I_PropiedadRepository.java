@@ -19,7 +19,12 @@ public interface I_PropiedadRepository {
                 .findFirst()
                 .orElse(new Propiedad());
     }
-    
+    default List<Propiedad> getLikeCodigo (String codigo) {
+        return getList()
+                .stream()
+                .filter(p->p.getCodigoPropiedad().toLowerCase().contains(codigo.toLowerCase()))
+                .collect(Collectors.toList());
+    }
     default List<Propiedad> getByUbicacion (Ubicacion ubicacion) {
         return getList()
                 .stream()

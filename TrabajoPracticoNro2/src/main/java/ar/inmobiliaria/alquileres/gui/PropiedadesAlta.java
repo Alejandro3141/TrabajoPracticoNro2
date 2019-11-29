@@ -22,7 +22,7 @@ public class PropiedadesAlta extends javax.swing.JInternalFrame {
         cargar();
         new Validator(txtInt).onlyDigit();
         new Validator(txtDecimal).onlyDigit();
-        new Validator(txtCodigoPropiedad).limit(5);
+        new Validator(txtCodigoPropiedad).limit(6);
         new Validator(txtDecimal).limit(2);
         new Validator().limit(txaDescripcion, 150);
     }

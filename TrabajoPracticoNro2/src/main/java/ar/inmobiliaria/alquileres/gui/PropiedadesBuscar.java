@@ -3,13 +3,16 @@ import ar.inmobiliaria.alquileres.connectors.Connector;
 import ar.inmobiliaria.alquileres.entities.Propiedad;
 import ar.inmobiliaria.alquileres.enums.TipoInmueble;
 import ar.inmobiliaria.alquileres.enums.Ubicacion;
+import ar.inmobiliaria.alquileres.repositories.interfaces.I_ClienteRepository;
 import ar.inmobiliaria.alquileres.repositories.interfaces.I_PropiedadRepository;
 import ar.inmobiliaria.alquileres.repositories.jdbc.PropiedadRepository;
 import ar.inmobiliaria.alquileres.utils.swing.Table;
+import ar.inmobiliaria.alquileres.utils.swing.Validator;
+import javax.swing.JOptionPane;
 
 public class PropiedadesBuscar extends javax.swing.JInternalFrame {
     I_PropiedadRepository pr;
-    
+    I_ClienteRepository cr;
     public PropiedadesBuscar() {
         super(
                 "Formulario para Buscar Propiedad",
@@ -21,6 +24,7 @@ public class PropiedadesBuscar extends javax.swing.JInternalFrame {
         pr = new PropiedadRepository(Connector.getConnection());
         btnGroup.add(radioMax);
         btnGroup.add(radioMin);
+        new Validator(txtCodigo).limit(6);
         cargar();
     }
     
@@ -60,6 +64,8 @@ public class PropiedadesBuscar extends javax.swing.JInternalFrame {
         lblCantidad = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPropiedades = new javax.swing.JTable();
+        btnEliminar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -75,33 +81,28 @@ public class PropiedadesBuscar extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Ubicación:");
 
-        cmbUbicacion.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                cmbUbicacionKeyReleased(evt);
+        cmbUbicacion.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbUbicacionItemStateChanged(evt);
             }
         });
 
         jLabel4.setText("Tipo de Inmueble:");
 
-        cmbTipoInmueble.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                cmbTipoInmuebleKeyReleased(evt);
+        cmbTipoInmueble.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbTipoInmuebleItemStateChanged(evt);
             }
         });
 
         jLabel5.setText("Precio Alquiler:");
 
         radioMax.setText("Máximo");
-        radioMax.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                radioMaxStateChanged(evt);
-            }
-        });
 
         radioMin.setText("Mínimo");
-        radioMin.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                radioMinStateChanged(evt);
+        radioMin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioMinActionPerformed(evt);
             }
         });
 
@@ -120,6 +121,15 @@ public class PropiedadesBuscar extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tblPropiedades);
 
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
+        btnActualizar.setText("Actualizar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -136,30 +146,35 @@ public class PropiedadesBuscar extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(8, 8, 8)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(32, 32, 32)
                                         .addComponent(jLabel3)
                                         .addGap(18, 18, 18)
-                                        .addComponent(cmbUbicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(46, 46, 46))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(cmbUbicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel5)
                                         .addGap(18, 18, 18)
                                         .addComponent(radioMax)
                                         .addGap(33, 33, 33)
-                                        .addComponent(radioMin)
-                                        .addGap(122, 122, 122)))
+                                        .addComponent(radioMin)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel6)
                                     .addComponent(jLabel4))
-                                .addGap(33, 33, 33)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cmbTipoInmueble, 0, 122, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cmbTipoInmueble, 0, 175, Short.MAX_VALUE)
                                     .addComponent(lblCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(25, 25, 25))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(137, 137, 137)
+                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(148, 148, 148)
+                .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,15 +190,20 @@ public class PropiedadesBuscar extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4)
                     .addComponent(cmbTipoInmueble, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblCantidad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(radioMax)
+                        .addComponent(radioMin)
+                        .addComponent(jLabel6)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(radioMax)
-                    .addComponent(radioMin)
-                    .addComponent(jLabel6)
-                    .addComponent(lblCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
-                .addContainerGap())
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19))
         );
 
         pack();
@@ -193,31 +213,48 @@ public class PropiedadesBuscar extends javax.swing.JInternalFrame {
         // Evento Buscar por Código
         String buscarCodigo=txtCodigo.getText();
         if(buscarCodigo==null) buscarCodigo="";
-        new Table<Propiedad>().cargar(tblPropiedades, pr.getByCodigo(buscarCodigo));
+        new Table<Propiedad>().cargar(tblPropiedades, pr.getLikeCodigo(buscarCodigo));
     }//GEN-LAST:event_txtCodigoKeyReleased
 
-    private void cmbUbicacionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbUbicacionKeyReleased
+    private void cmbUbicacionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbUbicacionItemStateChanged
         // Evento Buscar por Ubicación
         new Table<Propiedad>().cargar(tblPropiedades, pr.getByUbicacion(cmbUbicacion.getItemAt(cmbUbicacion.getSelectedIndex())));
-    }//GEN-LAST:event_cmbUbicacionKeyReleased
+    }//GEN-LAST:event_cmbUbicacionItemStateChanged
 
-    private void cmbTipoInmuebleKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbTipoInmuebleKeyReleased
+    private void cmbTipoInmuebleItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbTipoInmuebleItemStateChanged
         // Evento Buscar por Tipo de Inmueble
         new Table<Propiedad>().cargar(tblPropiedades, pr.getBytipoInmueble(cmbTipoInmueble.getItemAt(cmbTipoInmueble.getSelectedIndex())));
-    }//GEN-LAST:event_cmbTipoInmuebleKeyReleased
+    }//GEN-LAST:event_cmbTipoInmuebleItemStateChanged
 
-    private void radioMaxStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_radioMaxStateChanged
-        // Evento Buscar por Precio Máximo
-        new Table<Propiedad>().cargar(tblPropiedades, pr.max());
-    }//GEN-LAST:event_radioMaxStateChanged
-
-    private void radioMinStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_radioMinStateChanged
+    private void radioMinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioMinActionPerformed
         // Evento buscar por Precio Mínimo
         new Table<Propiedad>().cargar(tblPropiedades, pr.min());
-    }//GEN-LAST:event_radioMinStateChanged
+    }//GEN-LAST:event_radioMinActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // Evento Eliminar
+        int index=tblPropiedades.getSelectedRow();
+        if(index==-1) return;
+        Propiedad propiedad=pr.getByCodigo(
+                tblPropiedades.getValueAt(index, 0)+"");
+        if(!(cr.getByPropiedad(propiedad) == null)){
+            JOptionPane.showMessageDialog(this, 
+                    "¡No se puede borrar la propiedad por que tiene Clientes!");
+            return;
+        }
+        if(JOptionPane.showConfirmDialog(this, 
+            "Desea borrar el curso "+propiedad.getCodigoPropiedad()+" "+propiedad.getUbicacion()+" "
+                    +propiedad.getTipoInmueble()+" "+propiedad.getPrecioAlquiler()+" "
+                    +"?")!=0) 
+            return;
+        pr.remove(propiedad);
+        cargar();
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.ButtonGroup btnGroup;
     private javax.swing.JComboBox<TipoInmueble> cmbTipoInmueble;
     private javax.swing.JComboBox<Ubicacion> cmbUbicacion;
