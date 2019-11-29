@@ -95,6 +95,11 @@ public class PropiedadesAlta extends javax.swing.JInternalFrame {
 
         btnBuscar.setText("Buscar Propiedades");
         btnBuscar.setEnabled(false);
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -208,7 +213,12 @@ public class PropiedadesAlta extends javax.swing.JInternalFrame {
         JOptionPane.showMessageDialog(this, "Se ha cancelado el registro.");
         limpiar();
     }//GEN-LAST:event_btnCancelarActionPerformed
-    
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // Evento Buscar Propiedad
+        PropiedadesBuscar propiedades = new PropiedadesBuscar();
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
     public void limpiar(){
         txtCodigoPropiedad.setText("");
         txtInt.setText("0000");

@@ -1,13 +1,16 @@
 package ar.inmobiliaria.alquileres.gui;
 import ar.inmobiliaria.alquileres.connectors.Connector;
+import ar.inmobiliaria.alquileres.entities.Cliente;
 import ar.inmobiliaria.alquileres.entities.Propiedad;
 import ar.inmobiliaria.alquileres.enums.TipoInmueble;
 import ar.inmobiliaria.alquileres.enums.Ubicacion;
 import ar.inmobiliaria.alquileres.repositories.interfaces.I_ClienteRepository;
 import ar.inmobiliaria.alquileres.repositories.interfaces.I_PropiedadRepository;
+import ar.inmobiliaria.alquileres.repositories.jdbc.ClienteRepository;
 import ar.inmobiliaria.alquileres.repositories.jdbc.PropiedadRepository;
 import ar.inmobiliaria.alquileres.utils.swing.Table;
 import ar.inmobiliaria.alquileres.utils.swing.Validator;
+import java.util.stream.Collectors;
 import javax.swing.JOptionPane;
 
 public class PropiedadesBuscar extends javax.swing.JInternalFrame {
@@ -22,6 +25,7 @@ public class PropiedadesBuscar extends javax.swing.JInternalFrame {
                 false);
         initComponents();
         pr = new PropiedadRepository(Connector.getConnection());
+        cr = new ClienteRepository(Connector.getConnection());
         btnGroup.add(radioMax);
         btnGroup.add(radioMin);
         new Validator(txtCodigo).limit(6);
@@ -43,7 +47,6 @@ public class PropiedadesBuscar extends javax.swing.JInternalFrame {
         // actualizar la cantidad de Propiedades
         lblCantidad.setText(String.valueOf(pr.getCount()));
     }
-    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -98,6 +101,11 @@ public class PropiedadesBuscar extends javax.swing.JInternalFrame {
         jLabel5.setText("Precio Alquiler:");
 
         radioMax.setText("Máximo");
+        radioMax.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioMaxActionPerformed(evt);
+            }
+        });
 
         radioMin.setText("Mínimo");
         radioMin.addActionListener(new java.awt.event.ActionListener() {
@@ -129,6 +137,11 @@ public class PropiedadesBuscar extends javax.swing.JInternalFrame {
         });
 
         btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -170,9 +183,9 @@ public class PropiedadesBuscar extends javax.swing.JInternalFrame {
                                     .addComponent(lblCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(25, 25, 25))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(137, 137, 137)
+                .addGap(176, 176, 176)
                 .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(148, 148, 148)
+                .addGap(186, 186, 186)
                 .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -197,7 +210,7 @@ public class PropiedadesBuscar extends javax.swing.JInternalFrame {
                         .addComponent(radioMax)
                         .addComponent(radioMin)
                         .addComponent(jLabel6)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -228,7 +241,12 @@ public class PropiedadesBuscar extends javax.swing.JInternalFrame {
 
     private void radioMinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioMinActionPerformed
         // Evento buscar por Precio Mínimo
-        new Table<Propiedad>().cargar(tblPropiedades, pr.min());
+        new Table<Propiedad>().cargar(tblPropiedades,
+                pr
+                .getList()
+                .stream()
+                .filter(v -> v.getPrecioAlquiler()== pr.max().getPrecioAlquiler())
+                .collect(Collectors.toList()));
     }//GEN-LAST:event_radioMinActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -236,14 +254,14 @@ public class PropiedadesBuscar extends javax.swing.JInternalFrame {
         int index=tblPropiedades.getSelectedRow();
         if(index==-1) return;
         Propiedad propiedad=pr.getByCodigo(
-                tblPropiedades.getValueAt(index, 0)+"");
-        if(!(cr.getByPropiedad(propiedad) == null)){
+                tblPropiedades.getValueAt(index, 0).toString());
+        if(!cr.getByPropiedad(propiedad).getCodigoPropiedad().equals("")){
             JOptionPane.showMessageDialog(this, 
-                    "¡No se puede borrar la propiedad por que tiene Clientes!");
+                    "¡No se puede borrar la propiedad porque tiene un Cliente!");
             return;
         }
         if(JOptionPane.showConfirmDialog(this, 
-            "Desea borrar el curso "+propiedad.getCodigoPropiedad()+" "+propiedad.getUbicacion()+" "
+            "Desea borrar la propiedad "+propiedad.getCodigoPropiedad()+" "+propiedad.getUbicacion()+" "
                     +propiedad.getTipoInmueble()+" "+propiedad.getPrecioAlquiler()+" "
                     +"?")!=0) 
             return;
@@ -251,6 +269,22 @@ public class PropiedadesBuscar extends javax.swing.JInternalFrame {
         cargar();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
+    private void radioMaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioMaxActionPerformed
+        // Evento Buscar por precio Máximo
+        new Table<Propiedad>().cargar(tblPropiedades, 
+                pr
+                .getList()
+                .stream()
+                .filter(v -> v.getPrecioAlquiler()== pr.min().getPrecioAlquiler())
+                .collect(Collectors.toList()));
+    }//GEN-LAST:event_radioMaxActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        // Evento Actualizar
+        txtCodigo.setText("");
+        txtCodigo.requestFocus();
+        cargar();
+    }//GEN-LAST:event_btnActualizarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;

@@ -121,7 +121,7 @@ public class Inmobiliaria extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+   
     private void mniAcercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniAcercaActionPerformed
         // Evento ACERCA
         JOptionPane.showMessageDialog(this, "Sistema de Alquileres Inmobiliaria 2019");
@@ -211,7 +211,6 @@ public class Inmobiliaria extends javax.swing.JFrame {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktop;
     private javax.swing.JMenuBar jMenuBar1;
