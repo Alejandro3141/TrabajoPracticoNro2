@@ -1,6 +1,5 @@
 package ar.inmobiliaria.alquileres.gui;
 import ar.inmobiliaria.alquileres.connectors.Connector;
-import ar.inmobiliaria.alquileres.entities.Cliente;
 import ar.inmobiliaria.alquileres.entities.Propiedad;
 import ar.inmobiliaria.alquileres.enums.TipoInmueble;
 import ar.inmobiliaria.alquileres.enums.Ubicacion;
@@ -69,6 +68,7 @@ public class PropiedadesBuscar extends javax.swing.JInternalFrame {
         tblPropiedades = new javax.swing.JTable();
         btnEliminar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
+        btnAlta = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -143,6 +143,13 @@ public class PropiedadesBuscar extends javax.swing.JInternalFrame {
             }
         });
 
+        btnAlta.setText("Dar de Alta una Propiedad");
+        btnAlta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAltaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -183,11 +190,13 @@ public class PropiedadesBuscar extends javax.swing.JInternalFrame {
                                     .addComponent(lblCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(25, 25, 25))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(176, 176, 176)
-                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(186, 186, 186)
-                .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(68, 68, 68)
+                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(111, 111, 111)
+                .addComponent(btnAlta)
+                .addGap(58, 58, 58))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,13 +219,14 @@ public class PropiedadesBuscar extends javax.swing.JInternalFrame {
                         .addComponent(radioMax)
                         .addComponent(radioMin)
                         .addComponent(jLabel6)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19))
+                    .addComponent(btnAlta)
+                    .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
@@ -286,8 +296,17 @@ public class PropiedadesBuscar extends javax.swing.JInternalFrame {
         cargar();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
+    private void btnAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaActionPerformed
+        // Evento Ir al Formulario PropiedadAlta
+        if (Inmobiliaria.propiedadesAlta == null || Inmobiliaria.propiedadesAlta.isClosed()) {
+            Inmobiliaria.propiedadesAlta= new PropiedadesAlta();
+            Inmobiliaria.addJInternalFrame(Inmobiliaria.propiedadesAlta);
+        } else { Inmobiliaria.propiedadesAlta.setVisible(true);}
+    }//GEN-LAST:event_btnAltaActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnAlta;
     private javax.swing.JButton btnEliminar;
     private javax.swing.ButtonGroup btnGroup;
     private javax.swing.JComboBox<TipoInmueble> cmbTipoInmueble;

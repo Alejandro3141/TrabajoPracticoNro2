@@ -1,15 +1,29 @@
 package ar.inmobiliaria.alquileres.gui;
 import java.awt.Dimension;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 
 public class Inmobiliaria extends javax.swing.JFrame {
+    static PropiedadesBuscar propiedadesBuscar=null;
+    static PropiedadesAlta propiedadesAlta=null;
+    Clientes clientes=null;
+    Facturas facturas=null;
+    Contratos contratos=null;
+    HistoriaInmobiliaria historia=null;
     
     public Inmobiliaria() {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
-
+    
+    public static void addJInternalFrame(JInternalFrame internalFrame) {
+        desktop.add(internalFrame);
+        Dimension desktopSize = desktop.getSize();
+        Dimension FrameSize = internalFrame.getSize();
+        internalFrame.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        internalFrame.setVisible(true);
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -134,50 +148,50 @@ public class Inmobiliaria extends javax.swing.JFrame {
 
     private void mniPropiedadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniPropiedadesActionPerformed
         // PropiedadesAlta
-        PropiedadesAlta propiedades = new PropiedadesAlta();
-        desktop.add(propiedades);
-        Dimension desktopSize = desktop.getSize();
-        Dimension FrameSize = propiedades.getSize();
-        propiedades.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
-        propiedades.setVisible(true);
+        if (propiedadesAlta==null || propiedadesAlta.isClosed()) {
+            propiedadesAlta = new PropiedadesAlta();
+            addJInternalFrame(propiedadesAlta);
+        } else { propiedadesAlta.setVisible(true);}
     }//GEN-LAST:event_mniPropiedadesActionPerformed
 
     private void mniClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniClientesActionPerformed
         // Clientes
-        Clientes clientes = new Clientes();
-        desktop.add(clientes);
-        clientes.setVisible(true);
+        if (clientes==null || clientes.isClosed()) {
+            clientes = new Clientes();
+            addJInternalFrame(clientes);
+        } else { clientes.setVisible(true);}
     }//GEN-LAST:event_mniClientesActionPerformed
 
     private void mniContratosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniContratosActionPerformed
         // Contratos
-        Contratos contratos = new Contratos();
-        desktop.add(contratos);
-        contratos.setVisible(true);
+        if (contratos ==null || contratos.isClosed()) {
+            contratos = new Contratos();
+            addJInternalFrame(contratos);
+        } else { contratos.setVisible(true);}
     }//GEN-LAST:event_mniContratosActionPerformed
 
     private void mniFacturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniFacturasActionPerformed
         // Facturas
-        Facturas facturas = new Facturas();
-        desktop.add(facturas);
-        facturas.setVisible(true);
+        if (facturas==null || facturas.isClosed()) {
+            facturas = new Facturas();
+            addJInternalFrame(facturas);
+        } else { facturas.setVisible(true);}
     }//GEN-LAST:event_mniFacturasActionPerformed
 
     private void mniHistoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniHistoriaActionPerformed
         // Historia
-        HistoriaInmobiliaria historia = new HistoriaInmobiliaria();
-        desktop.add(historia);
-        historia.setVisible(true);
+        if (historia==null || historia.isClosed()) {
+            historia = new HistoriaInmobiliaria();
+            addJInternalFrame(historia);
+        } else { historia.setVisible(true);}
     }//GEN-LAST:event_mniHistoriaActionPerformed
 
     private void mniBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniBuscarActionPerformed
         // PropiedadesBuscar
-        PropiedadesBuscar propiedades = new PropiedadesBuscar();
-        desktop.add(propiedades);
-        Dimension desktopSize = desktop.getSize();
-        Dimension FrameSize = propiedades.getSize();
-        propiedades.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
-        propiedades.setVisible(true);
+        if (propiedadesBuscar==null || propiedadesBuscar.isClosed()) {
+            propiedadesBuscar = new PropiedadesBuscar();
+            addJInternalFrame(propiedadesBuscar);
+        } else { propiedadesBuscar.setVisible(true);}
     }//GEN-LAST:event_mniBuscarActionPerformed
 
     public static void main(String args[]) {
@@ -212,7 +226,7 @@ public class Inmobiliaria extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane desktop;
+    private static javax.swing.JDesktopPane desktop;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem mniAcerca;
     private javax.swing.JMenuItem mniBuscar;

@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 
 public class PropiedadesAlta extends javax.swing.JInternalFrame {
     I_PropiedadRepository pr;
+    
     public PropiedadesAlta() {
         super(
                 "Formulario de Propiedades", 
@@ -94,7 +95,6 @@ public class PropiedadesAlta extends javax.swing.JInternalFrame {
         txtDecimal.setText("00");
 
         btnBuscar.setText("Buscar Propiedades");
-        btnBuscar.setEnabled(false);
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
@@ -206,7 +206,6 @@ public class PropiedadesAlta extends javax.swing.JInternalFrame {
                 "Se dió de alta una Propiedad, código: "+propiedad.getCodigoPropiedad());
         limpiar();
         cargar();
-        btnBuscar.setEnabled(true);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -216,7 +215,10 @@ public class PropiedadesAlta extends javax.swing.JInternalFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // Evento Buscar Propiedad
-        PropiedadesBuscar propiedades = new PropiedadesBuscar();
+        if (Inmobiliaria.propiedadesBuscar == null || Inmobiliaria.propiedadesBuscar.isClosed()) {
+            Inmobiliaria.propiedadesBuscar= new PropiedadesBuscar();
+            Inmobiliaria.addJInternalFrame(Inmobiliaria.propiedadesBuscar);
+        } else { Inmobiliaria.propiedadesBuscar.setVisible(true);}
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     public void limpiar(){
