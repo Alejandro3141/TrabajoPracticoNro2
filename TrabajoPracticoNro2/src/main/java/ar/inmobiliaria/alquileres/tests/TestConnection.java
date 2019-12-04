@@ -2,7 +2,7 @@ package ar.inmobiliaria.alquileres.tests;
 import ar.inmobiliaria.alquileres.connectors.Connector;
 import java.sql.Connection;
 import java.sql.Statement;
-/*
+/* 
   ORDEN DE TESTEO:
     - TestPropiedadRepository
     - TestClienteRepository

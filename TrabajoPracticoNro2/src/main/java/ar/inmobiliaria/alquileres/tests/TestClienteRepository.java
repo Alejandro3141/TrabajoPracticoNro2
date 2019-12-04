@@ -35,8 +35,14 @@ public class TestClienteRepository {
             // Consultas
             System.out.println("\n" + "Conseguir una cliente:" + "\n" + cr.getById(1));
             System.out.println("\n" + "Conseguir un cliente por propiedad:" + "\n" + cr.getByPropiedad(pr.getByCodigo("Ca-99")));
-            System.out.println("\n" + "Conseguir un cliente por código de propeidad: " + "\n" + cr.getByCodigoPropiedad("Ca-02"));
+            System.out.println("\n" + "Conseguir clientes like codigoPropiedad:");
+            cr.getLikeCodigoPropiedad("Ca");
+            System.out.println("\n" + "Conseguir un cliente por código de propieddad: " + "\n" + cr.getByCodigoPropiedad("Ca-02"));
             System.out.println("\n" + "Conseguir un cliente por nombre y apellido:" + "\n" + cr.getLikeNombreAndApellido("Carlos","Cisneros"));
+            System.out.println("\n" + "Conseguir cliente por nombre:");
+            cr.getLikeNombre("Carlos").forEach(System.out::println);
+            System.out.println("\n" + "Conseguir cliente por apellido:");
+            cr.getLikeApellido("Cisneros").forEach(System.out::println);
             System.out.println("\n" + "Cantidad de clientes: " + cr.getCount());
         } catch (Exception e) { e.printStackTrace();}
     }

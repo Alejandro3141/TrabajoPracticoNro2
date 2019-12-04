@@ -7,10 +7,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public interface I_PropiedadRepository {
-    void save(Propiedad propiedad);         // insert into cursos () 
-    void remove(Propiedad propiedad);       // delete from cursos
-    void update(Propiedad propiedad);       // update cursos
-    List<Propiedad>getList();            // select * from cursos
+    void save(Propiedad propiedad);
+    void remove(Propiedad propiedad);
+    void update(Propiedad propiedad);
+    List<Propiedad>getList();           
     
     default Propiedad getByCodigo(String codigo){
         return getList()

@@ -21,13 +21,13 @@ public class PropiedadesBuscar extends javax.swing.JInternalFrame {
                 false, 
                 true, 
                 false, 
-                false);
+                true);
         initComponents();
         pr = new PropiedadRepository(Connector.getConnection());
         cr = new ClienteRepository(Connector.getConnection());
         btnGroup.add(radioMax);
         btnGroup.add(radioMin);
-        new Validator(txtCodigo).limit(6);
+        new Validator(txtCodigo).limit(8);
         cargar();
     }
     
@@ -188,16 +188,19 @@ public class PropiedadesBuscar extends javax.swing.JInternalFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(cmbTipoInmueble, 0, 175, Short.MAX_VALUE)
                                     .addComponent(lblCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(25, 25, 25))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(111, 111, 111)
-                .addComponent(btnAlta)
-                .addGap(58, 58, 58))
+                        .addGap(25, 25, 25))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(103, 103, 103)
+                        .addComponent(btnAlta)
+                        .addGap(29, 29, 29))))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnActualizar, btnAlta, btnEliminar});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -219,15 +222,17 @@ public class PropiedadesBuscar extends javax.swing.JInternalFrame {
                         .addComponent(radioMax)
                         .addComponent(radioMin)
                         .addComponent(jLabel6)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addGap(34, 34, 34)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAlta)
                     .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGap(25, 25, 25))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnActualizar, btnAlta, btnEliminar});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -265,14 +270,14 @@ public class PropiedadesBuscar extends javax.swing.JInternalFrame {
         if(index==-1) return;
         Propiedad propiedad=pr.getByCodigo(
                 tblPropiedades.getValueAt(index, 0).toString());
-        if(!cr.getByPropiedad(propiedad).getCodigoPropiedad().equals("")){
+        if(!(cr.getByPropiedad(propiedad).getCodigoPropiedad() == null)){
             JOptionPane.showMessageDialog(this, 
                     "¡No se puede borrar la propiedad porque tiene un Cliente!");
             return;
         }
         if(JOptionPane.showConfirmDialog(this, 
-            "Desea borrar la propiedad "+propiedad.getCodigoPropiedad()+" "+propiedad.getUbicacion()+" "
-                    +propiedad.getTipoInmueble()+" "+propiedad.getPrecioAlquiler()+" "
+            "¿Desea borrar la propiedad "+propiedad.getCodigoPropiedad()+", con Ubicación en "+propiedad.getUbicacion()+", Tipo de Inmueble: "
+                    +propiedad.getTipoInmueble()+" y Precio de Alquiler: "+propiedad.getPrecioAlquiler()+" "
                     +"?")!=0) 
             return;
         pr.remove(propiedad);
@@ -301,7 +306,9 @@ public class PropiedadesBuscar extends javax.swing.JInternalFrame {
         if (Inmobiliaria.propiedadesAlta == null || Inmobiliaria.propiedadesAlta.isClosed()) {
             Inmobiliaria.propiedadesAlta= new PropiedadesAlta();
             Inmobiliaria.addJInternalFrame(Inmobiliaria.propiedadesAlta);
-        } else { Inmobiliaria.propiedadesAlta.setVisible(true);}
+        }
+        Inmobiliaria.propiedadesAlta.toFront();
+        Inmobiliaria.propiedadesAlta.show();
     }//GEN-LAST:event_btnAltaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

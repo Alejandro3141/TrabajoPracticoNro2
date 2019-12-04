@@ -21,11 +21,39 @@ public class Validator {
         if(txt.getText().length()==length) return true;
         return error("Debe tener "+length+" caracteres.");
     }
+    public boolean lengthGreaterThan (int length) {
+        if(txt.getText().length()>length) return true;
+        return error("Debe ser mayor a " + length + " carácteres.");
+    }
+    public boolean contains(String mensaje, String caracter) {
+        if(txt.getText().contains(caracter)) return true;
+        return error("Debe tener " + mensaje + ": " + caracter);
+    }
     public void onlyDigit () {
         txt.addKeyListener(new KeyAdapter() {
             public void keyTyped (KeyEvent e) {
                 char c = e.getKeyChar();
                 if(!Character.isDigit(c)){
+                    e.consume();
+                }
+            } 
+        });
+    }
+    public void OnlyDigitAndSpecialCharacter(){
+        txt.addKeyListener(new KeyAdapter() {
+            public void keyTyped (KeyEvent e) {
+                char c = e.getKeyChar();
+                if(Character.isLetter(c)){
+                    e.consume();
+                }
+            } 
+        });
+    }
+    public void onlyChar () {
+        txt.addKeyListener(new KeyAdapter() {
+            public void keyTyped (KeyEvent e) {
+                char c = e.getKeyChar();
+                if(Character.isDigit(c)){
                     e.consume();
                 }
             } 
