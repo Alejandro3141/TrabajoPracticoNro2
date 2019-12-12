@@ -4,17 +4,14 @@ import ar.inmobiliaria.alquileres.entities.Cliente;
 import ar.inmobiliaria.alquileres.entities.HistoriaInmobiliaria;
 import ar.inmobiliaria.alquileres.repositories.interfaces.I_HistoriaInmobiliariaRepository;
 import ar.inmobiliaria.alquileres.repositories.interfaces.I_ClienteRepository;
-import ar.inmobiliaria.alquileres.repositories.interfaces.I_PropiedadRepository;
 import ar.inmobiliaria.alquileres.repositories.jdbc.HistoriaInmobiliariaRepository;
 import ar.inmobiliaria.alquileres.repositories.jdbc.ClienteRepository;
-import ar.inmobiliaria.alquileres.repositories.jdbc.PropiedadRepository;
 import ar.inmobiliaria.alquileres.utils.swing.Table;
 import javax.swing.JOptionPane;
 
 public class Historia extends javax.swing.JInternalFrame {
     I_HistoriaInmobiliariaRepository hi;
     I_ClienteRepository cr;
-    I_PropiedadRepository pr;
     
     public Historia() {
         super("Formulario de la Historia Inmobiliaria",
@@ -25,7 +22,6 @@ public class Historia extends javax.swing.JInternalFrame {
         initComponents();
         hi = new HistoriaInmobiliariaRepository(Connector.getConnection());
         cr = new ClienteRepository(Connector.getConnection());
-        pr = new PropiedadRepository(Connector.getConnection());
         cargar();
         btnGroup.add(radioEgresados);
         btnGroup.add(radioRenovados);
@@ -245,14 +241,22 @@ public class Historia extends javax.swing.JInternalFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // Evento Alta
         if(!(hi.getByCodigoCliente(cmbCliente.getItemAt(cmbCliente.getSelectedIndex()).getCodigoCliente()).getFechaEgreso() == null)) {
-            JOptionPane.showMessageDialog(this, "¡El cliente seleccionado ha egresado.!");
+            JOptionPane.showMessageDialog(this, "¡El cliente seleccionado ha egresado!");
             return;
         }
+        if(!hi.getByCliente(cmbCliente.getItemAt(cmbCliente.getSelectedIndex())).isEmpty()) {
+            JOptionPane.showMessageDialog(this, "¡El cliente seleccionado ya tiene una historia!");
+                    return;
+        }
+        String fechaR = txtFechaRenovacion.getText();
+        String fechaE = txtFechaEgreso.getText();
+        if (fechaR.equals("")) fechaR=null;
+        if (fechaE.equals("")) fechaE=null;
         HistoriaInmobiliaria historia = new HistoriaInmobiliaria(
             cmbCliente.getItemAt(cmbCliente.getSelectedIndex()).getCodigoPropiedad(),
             cmbCliente.getItemAt(cmbCliente.getSelectedIndex()).getCodigoCliente(),
-            txtFechaRenovacion.getText(),
-            txtFechaEgreso.getText());
+            fechaR,
+            fechaE);
         hi.save(historia);
         JOptionPane.showMessageDialog(this,
             "Se dió de alta una historia, código de Propiedad: "+historia.getCodigoPropiedad() 

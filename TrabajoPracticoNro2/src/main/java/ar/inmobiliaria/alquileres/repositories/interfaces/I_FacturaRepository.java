@@ -13,7 +13,7 @@ public interface I_FacturaRepository {
     default Factura getByCodigo(int codigo){
         return getList()
                 .stream()
-                .filter(c->c.getCodigoCliente()==codigo)
+                .filter(c->c.getCodigoFactura()==codigo)
                 .findFirst()
                 .orElse(new Factura());
     }

@@ -1,4 +1,5 @@
 package ar.inmobiliaria.alquileres.repositories.interfaces;
+import ar.inmobiliaria.alquileres.entities.Cliente;
 import ar.inmobiliaria.alquileres.entities.HistoriaInmobiliaria;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,6 +23,13 @@ public interface I_HistoriaInmobiliariaRepository {
                 .filter(h->h.getCodigoCliente() == codigo)
                 .findFirst()
                 .orElse(new HistoriaInmobiliaria());
+    }
+    // Nueva Consulta a Incorporar
+    default List<HistoriaInmobiliaria> getByCliente (Cliente cliente) {
+        return getList()
+                .stream()
+                .filter(h->h.getCodigoCliente() == cliente.getCodigoCliente())
+                .collect(Collectors.toList());
     }
     default HistoriaInmobiliaria getByCodigoPropiedadAndCliente(String codigoPropiedad, int codigoCliente) {
         return getList()
